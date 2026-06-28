@@ -1,26 +1,123 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@theme {
+  --color-rp-base: #232136;
+  --color-rp-surface: #2a273f;
+  --color-rp-overlay: #393552;
+  --color-rp-muted: #6e6a86;
+  --color-rp-subtle: #908caa;
+  --color-rp-text: #e0def4;
+  --color-rp-love: #eb6f92;
+  --color-rp-gold: #f6c177;
+  --color-rp-rose: #ea9a97;
+  --color-rp-pine: #3e8fb0;
+  --color-rp-foam: #9ccfd8;
+  --color-rp-iris: #c4a7e7;
+  --color-rp-hl-low: #2a283e;
+  --color-rp-hl-med: #44415a;
+  --color-rp-hl-high: #56526e;
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-background: var(--color-rp-base);
+  --color-foreground: var(--color-rp-text);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  --background: #232136;
+  --foreground: #e0def4;
 }
 
 body {
-  background: var(--background);
+  background-color: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans);
+}
+
+/* Glassmorphism utility */
+.glass {
+  background: rgba(42, 39, 63, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(156, 207, 216, 0.1);
+}
+
+.glass-panel {
+  background: rgba(57, 53, 82, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(196, 167, 231, 0.15);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Markdown Preview Styles */
+.markdown-preview h1 { font-size: 1.875rem; font-weight: bold; margin-bottom: 1rem; margin-top: 1.5rem; color: #e0def4; }
+.markdown-preview h2 { font-size: 1.5rem; font-weight: bold; margin-bottom: 0.75rem; margin-top: 1.25rem; color: #e0def4; }
+.markdown-preview h3 { font-size: 1.25rem; font-weight: bold; margin-bottom: 0.5rem; margin-top: 1rem; color: #e0def4; }
+.markdown-preview p { margin-bottom: 1rem; line-height: 1.625; color: rgba(224, 222, 244, 0.9); }
+.markdown-preview ul { list-style-type: disc; list-style-position: inside; margin-bottom: 1rem; color: rgba(224, 222, 244, 0.9); }
+.markdown-preview ol { list-style-type: decimal; list-style-position: inside; margin-bottom: 1rem; color: rgba(224, 222, 244, 0.9); }
+.markdown-preview li { margin-bottom: 0.25rem; }
+.markdown-preview a { color: #c4a7e7; text-decoration: none; }
+.markdown-preview a:hover { text-decoration: underline; color: #b094d6; }
+.markdown-preview strong { font-weight: 800; color: #ffffff; }
+.markdown-preview em { font-style: italic; color: #ffffff; }
+.markdown-preview blockquote { border-left: 4px solid #393552; padding-left: 1rem; font-style: italic; color: #908caa; margin: 1rem 0; background-color: rgba(42, 39, 63, 0.3); padding: 0.5rem 1rem; border-top-right-radius: 0.5rem; border-bottom-right-radius: 0.5rem; }
+.markdown-preview code { background-color: #232136; color: #ea9a97; padding: 0.125rem 0.375rem; border-radius: 0.25rem; font-family: monospace; font-size: 0.875rem; border: 1px solid #393552; }
+.markdown-preview pre { background-color: #232136; padding: 1rem; border-radius: 0.75rem; overflow-x: auto; margin-bottom: 1rem; border: 1px solid #393552; box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.05); }
+.markdown-preview pre code { background-color: transparent; padding: 0; color: #e0def4; border: none; font-size: 0.875rem; }
+.markdown-preview hr { border-color: #393552; margin: 1.5rem 0; border-top-width: 1px; }
+.markdown-preview table { width: 100%; text-align: left; border-collapse: collapse; margin-bottom: 1rem; }
+.markdown-preview th { border-bottom: 1px solid #393552; padding: 0.5rem 1rem; font-weight: bold; color: #e0def4; background-color: rgba(42, 39, 63, 0.5); }
+.markdown-preview td { border-bottom: 1px solid rgba(57, 53, 82, 0.5); padding: 0.5rem 1rem; color: rgba(224, 222, 244, 0.9); }
+
+/* Global Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-rp-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-rp-overlay);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-rp-muted);
+}
+
+/* Global Selection styling */
+::selection {
+  background-color: var(--color-rp-surface);
+  color: var(--color-rp-rose);
+}
+
+/* Enhancing inputs and smooth transitions across the app */
+* {
+  transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow, transform;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Beautiful hover gradients for sleek modern look */
+.hover-gradient-border {
+  position: relative;
+}
+.hover-gradient-border::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(45deg, var(--color-rp-iris), var(--color-rp-rose));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+.hover-gradient-border:hover::before {
+  opacity: 1;
 }
